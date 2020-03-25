@@ -3,9 +3,11 @@
 // Licensing information can be found in the `LICENSE` file in the root directory of the repository that contains this file.
 //
 
+// Exposed
+
 // Type: Name
 
-public struct Name: LosslessStringConvertible {
+public struct Name: NameProtocol {
 
     // Exposed
 
@@ -17,11 +19,12 @@ public struct Name: LosslessStringConvertible {
     // Protocol: LosslessStringConvertible
     // Topic: Main
 
-    public init?(_ description: String) {
+    public init?<D>(_ description: D)
+    where D: StringProtocol {
         guard Self._isDescriptionValid(description) else {
             return nil
         }
-        self.description = description
+        self.description = .init(description)
     }
 }
 
@@ -29,7 +32,10 @@ extension Name {
 
     // Concealed
 
-    private static func _isDescriptionValid(_ description: String) -> Bool {
+    // Topic: Main
+
+    private static func _isDescriptionValid<D>(_ description: D) -> Bool
+    where D: StringProtocol {
         let description = description.unicodeScalars[...]
         guard
             let first = description.first,

@@ -3,10 +3,10 @@
 // Licensing information can be found in the `LICENSE` file in the root directory of the repository that contains this file.
 //
 
-// Type: Name
+extension NameProtocol {
 
-extension Name: Decodable {
-
+    // Exposed
+    
     // Protocol: Decodable
     // Topic: Main
 
