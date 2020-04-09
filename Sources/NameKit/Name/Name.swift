@@ -5,19 +5,17 @@
 
 // Exposed
 
-// Type: Name
-
-public struct Name: NameProtocol {
+public struct Name {
 
     // Exposed
 
     // Protocol: CustomStringConvertible
-    // Topic: Main
+    // Topic: Instance Properties
 
     public let description: String
 
     // Protocol: LosslessStringConvertible
-    // Topic: Main
+    // Topic: Initializers
 
     public init?<D>(_ description: D)
     where D: StringProtocol {
@@ -32,6 +30,7 @@ extension Name {
 
     // Concealed
 
+    // Type: Name
     // Topic: Main
 
     private static func _isDescriptionValid<D>(_ description: D) -> Bool
@@ -52,3 +51,5 @@ extension Name {
         return true
     }
 }
+
+extension Name: StringRepresentable { }
